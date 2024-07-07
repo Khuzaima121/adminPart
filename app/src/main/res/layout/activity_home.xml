@@ -16,6 +16,16 @@
         />
 
 
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/fabMessage"
+    android:layout_margin="60dp"
+    android:src="@drawable/icon_orders"
+    android:backgroundTint="#E4967E"
+    />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"

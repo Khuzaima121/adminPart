@@ -2,12 +2,11 @@ package com.example.adminpart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -20,7 +19,7 @@ import java.util.Objects;
 public class Home extends AppCompatActivity {
 
     RecyclerView rvCategories;
-    FloatingActionButton fabAdd;
+    FloatingActionButton fabAdd,fabMessage;
     DatabaseReference reference;
     CatagoriesAdapter adapter;
 
@@ -36,6 +35,13 @@ public class Home extends AppCompatActivity {
             startActivity(new Intent(Home.this, addCatagories.class));
         });
 
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, order.class));
+            }
+        });
+
         loadCategories();
     }
 
@@ -44,8 +50,9 @@ public class Home extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         Objects.requireNonNull(getSupportActionBar()).hide();
         fabAdd = findViewById(R.id.fabAddbtn);
+        fabMessage=findViewById(R.id.fabMessage);
         rvCategories = findViewById(R.id.rvCatagories);
-        rvCategories.setLayoutManager(new GridLayoutManager(this,2));
+        rvCategories.setLayoutManager(new WrapContentGridLayoutManager(this, 2));
 
         reference = FirebaseDatabase.getInstance().getReference().child("categories");
 
@@ -54,7 +61,7 @@ public class Home extends AppCompatActivity {
                         .setQuery(reference, model_catagories.class)
                         .build();
 
-        adapter = new CatagoriesAdapter(options);
+        adapter = new CatagoriesAdapter(options, this, this); // Pass 'this' as activity context
         rvCategories.setAdapter(adapter);
     }
 

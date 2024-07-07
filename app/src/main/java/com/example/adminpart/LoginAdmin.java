@@ -66,9 +66,8 @@ public class LoginAdmin extends AppCompatActivity {
             }
             progressBar.setVisibility(View.VISIBLE);
 
-            // Check if the email and password match the hardcoded admin credentials
+
             if (email.equals(ADMIN_EMAIL) && pass.equals(ADMIN_PASSWORD)) {
-                // Attempt to sign in with Firebase Auth
                 mAuth.signInWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(this, task -> {
                             progressBar.setVisibility(View.GONE);
@@ -92,6 +91,7 @@ public class LoginAdmin extends AppCompatActivity {
 
     private void MovetoHome() {
         startActivity(new Intent(LoginAdmin.this, Home.class));
+        finish();
     }
 
     private void init() {

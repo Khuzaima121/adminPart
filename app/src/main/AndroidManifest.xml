@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat"
         tools:targetApi="31">
+        <activity
+            android:name=".order"
+            android:exported="false" />
+        <activity
+            android:name=".addDishes"
+            android:exported="false" />
+        <activity
+            android:name=".dishes_home"
+            android:exported="false" />
         <activity
             android:name=".addCatagories"
             android:exported="false" />
